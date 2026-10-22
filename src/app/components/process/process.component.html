@@ -1,0 +1,22 @@
+<section id="proceso" class="section" aria-labelledby="proceso-title">
+  <div class="container">
+    <header class="section-header" appReveal>
+      <span class="eyebrow">Proceso de trabajo</span>
+      <h2 id="proceso-title">Cómo trabajamos juntos</h2>
+      <p>Un proceso claro, con comunicación constante en cada etapa.</p>
+    </header>
+
+    <ol class="steps">
+      @for (step of steps; track step.title; let i = $index) {
+        <li class="step" appReveal [revealDelay]="i * 110">
+          <div class="step-icon">
+            <app-icon [name]="step.icon" [size]="24" />
+            <span class="step-number" aria-hidden="true">{{ i + 1 }}</span>
+          </div>
+          <h3><span class="visually-hidden">Paso {{ i + 1 }}: </span>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

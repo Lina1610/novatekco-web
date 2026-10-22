@@ -1,0 +1,63 @@
+<section id="inicio" class="hero" aria-labelledby="hero-title">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="badge">
+        <span class="pulse" aria-hidden="true"></span>
+        {{ brand }} · {{ tagline }}
+      </p>
+
+      <h1 id="hero-title">
+        Transformamos tus ideas en <span class="gradient-text">software que funciona</span>
+      </h1>
+
+      <p class="lead">
+        Páginas web, aplicaciones y sistemas personalizados, construidos con tecnologías modernas
+        para que tu negocio se vea profesional y trabaje de forma más eficiente.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="#portafolio">
+          Ver proyectos
+          <app-icon name="arrowRight" />
+        </a>
+        <a class="btn btn-outline" href="#contacto">Solicitar cotización</a>
+      </div>
+
+      <ul class="highlights">
+        @for (item of highlights; track item) {
+          <li>
+            <app-icon name="check" [size]="18" />
+            {{ item }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="code-window">
+        <div class="window-bar">
+          <span></span><span></span><span></span>
+          <em>proyecto.ts</em>
+        </div>
+        <pre><code><span class="k">const</span> <span class="v">proyecto</span> = {{ '{' }}
+  <span class="p">cliente</span>: <span class="s">'Tu negocio'</span>,
+  <span class="p">objetivo</span>: <span class="s">'Crecer en digital'</span>,
+  <span class="p">stack</span>: [<span class="s">'Angular'</span>, <span class="s">'Node.js'</span>, <span class="s">'SQL'</span>],
+  <span class="p">responsive</span>: <span class="k">true</span>,
+{{ '}' }};
+
+<span class="k">await</span> <span class="f">construir</span>(<span class="v">proyecto</span>);
+<span class="c">// ✓ Listo para publicar</span></code></pre>
+      </div>
+      <div class="floating-card card-a">
+        <app-icon name="rocket" [size]="20" />
+        <span>Rendimiento</span>
+      </div>
+      <div class="floating-card card-b">
+        <app-icon name="shield" [size]="20" />
+        <span>Accesible</span>
+      </div>
+    </div>
+  </div>
+</section>

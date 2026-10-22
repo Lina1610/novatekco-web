@@ -1,0 +1,26 @@
+<section id="tecnologias" class="section" aria-labelledby="tecnologias-title">
+  <div class="container">
+    <header class="section-header" appReveal>
+      <span class="eyebrow">Tecnologías</span>
+      <h2 id="tecnologias-title">Herramientas con las que trabajamos</h2>
+      <p>Tecnologías probadas y ampliamente usadas, para que tu proyecto sea estable y fácil de mantener.</p>
+    </header>
+
+    <div class="groups">
+      @for (group of groups; track group.title; let i = $index) {
+        <section class="group" appReveal [revealDelay]="i * 100" [attr.aria-labelledby]="'tech-group-' + i">
+          <h3 [id]="'tech-group-' + i">{{ group.title }}</h3>
+          <p>{{ group.description }}</p>
+          <ul>
+            @for (tech of group.items; track tech.name) {
+              <li class="chip" [style.--accent]="tech.color">
+                <span class="chip-mark" aria-hidden="true">{{ tech.short }}</span>
+                {{ tech.name }}
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    </div>
+  </div>
+</section>

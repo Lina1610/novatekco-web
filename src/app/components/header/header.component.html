@@ -1,0 +1,42 @@
+<header class="header">
+  <div class="container header-inner">
+    <a class="logo" href="#inicio" (click)="closeMenu()" [attr.aria-label]="brand + ', ir al inicio'">
+      <img class="logo-mark" [src]="logo" alt="" width="58" height="40" />
+      <span class="logo-text">
+        <span class="logo-name">{{ brandBase }}<span class="accent">{{ brandAccent }}</span></span>
+        <span class="logo-tagline">{{ tagline }}</span>
+      </span>
+    </a>
+
+    <button
+      type="button"
+      class="menu-toggle"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="menu-principal"
+      [attr.aria-label]="menuOpen() ? 'Cerrar menú' : 'Abrir menú'"
+      (click)="toggleMenu()"
+    >
+      <app-icon [name]="menuOpen() ? 'close' : 'menu'" />
+    </button>
+
+    <nav id="menu-principal" class="nav" [class.open]="menuOpen()" aria-label="Navegación principal">
+      <ul>
+        @for (link of links; track link.id) {
+          <li>
+            <a
+              [href]="'#' + link.id"
+              [class.active]="activeId() === link.id"
+              [attr.aria-current]="activeId() === link.id ? 'true' : null"
+              (click)="closeMenu()"
+            >{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+      <a class="btn btn-primary nav-cta" href="#contacto" (click)="closeMenu()">Solicitar cotización</a>
+    </nav>
+  </div>
+</header>
+
+@if (menuOpen()) {
+  <div class="backdrop" (click)="closeMenu()" aria-hidden="true"></div>
+}

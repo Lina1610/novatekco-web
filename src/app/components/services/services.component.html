@@ -1,0 +1,31 @@
+<section id="servicios" class="section" aria-labelledby="servicios-title">
+  <div class="container">
+    <header class="section-header" appReveal>
+      <span class="eyebrow">Servicios</span>
+      <h2 id="servicios-title">Soluciones digitales para tu negocio</h2>
+      <p>Desde una página web sencilla hasta un sistema completo con base de datos: cada solución se adapta a lo que realmente necesitas.</p>
+    </header>
+
+    <ul class="grid">
+      @for (service of services; track service.title; let i = $index) {
+        <li class="card" appReveal [revealDelay]="(i % 3) * 90">
+          <div class="icon-box">
+            <app-icon [name]="service.icon" [size]="26" />
+          </div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <ul class="features" [attr.aria-label]="'Incluye en ' + service.title">
+            @for (feature of service.features; track feature) {
+              <li>{{ feature }}</li>
+            }
+          </ul>
+        </li>
+      }
+      <li class="card card-cta" appReveal>
+        <h3>¿Necesitas algo diferente?</h3>
+        <p>Cuéntanos tu idea y buscamos juntos la mejor solución.</p>
+        <a class="btn btn-primary" href="#contacto">Hablemos</a>
+      </li>
+    </ul>
+  </div>
+</section>

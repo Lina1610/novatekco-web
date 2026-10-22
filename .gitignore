@@ -1,0 +1,20 @@
+# Compilación
+/dist
+/out-tsc
+/tmp
+
+# Dependencias
+/node_modules
+
+# Angular
+/.angular/cache
+.angular/
+
+# IDE y sistema
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*

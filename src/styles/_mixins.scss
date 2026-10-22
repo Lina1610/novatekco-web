@@ -1,0 +1,25 @@
+@use 'variables' as v;
+
+@mixin up($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin down($bp) {
+  @media (max-width: ($bp - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: v.$radius;
+  box-shadow: var(--shadow);
+}
+
+@mixin focus-ring {
+  outline: 2px solid var(--violet-300);
+  outline-offset: 3px;
+}

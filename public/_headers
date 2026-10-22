@@ -1,0 +1,13 @@
+# Cabeceras para Cloudflare Pages
+# Seguridad básica para todas las rutas
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Archivos JS y CSS con hash en el nombre: se pueden guardar en caché por un año
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/*.css
+  Cache-Control: public, max-age=31536000, immutable

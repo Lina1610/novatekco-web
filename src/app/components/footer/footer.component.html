@@ -1,0 +1,22 @@
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <a class="brand" href="#inicio">
+        <img [src]="logo" alt="" width="46" height="32" loading="lazy" />
+        {{ brand }}
+      </a>
+      <p>{{ tagline }}</p>
+    </div>
+
+    <nav aria-label="Enlaces del pie de página">
+      <ul>
+        @for (link of links; track link.id) {
+          <li><a [href]="'#' + link.id">{{ link.label }}</a></li>
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="container copy">
+    <p>© {{ year }} {{ brand }}. Todos los derechos reservados.</p>
+  </div>
+</footer>

@@ -1,0 +1,116 @@
+<section id="contacto" class="section" aria-labelledby="contacto-title">
+  <div class="container">
+    <header class="section-header" appReveal>
+      <span class="eyebrow">Contacto</span>
+      <h2 id="contacto-title">Hablemos de tu proyecto</h2>
+      <p>Escríbenos por el medio que prefieras y te responderemos con una propuesta adaptada a tus necesidades.</p>
+    </header>
+
+    <div class="layout">
+      <ul class="channels" appReveal>
+        @for (channel of channels; track channel.label) {
+          <li>
+            @if (channel.href) {
+              <a
+                class="channel"
+                [href]="channel.href"
+                [attr.target]="channel.external ? '_blank' : null"
+                [attr.rel]="channel.external ? 'noopener noreferrer' : null"
+              >
+                <span class="channel-icon"><app-icon [name]="channel.icon" /></span>
+                <span class="channel-text">
+                  <strong>{{ channel.label }}</strong>
+                  <span>{{ channel.value }}</span>
+                </span>
+                <app-icon class="channel-arrow" [name]="channel.external ? 'external' : 'arrowRight'" [size]="18" />
+                @if (channel.external) {
+                  <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+                }
+              </a>
+            } @else {
+              <div class="channel channel-disabled">
+                <span class="channel-icon"><app-icon [name]="channel.icon" /></span>
+                <span class="channel-text">
+                  <strong>{{ channel.label }}</strong>
+                  <span>Pendiente de configurar</span>
+                </span>
+              </div>
+            }
+          </li>
+        }
+      </ul>
+
+      <form class="quote" appReveal [revealDelay]="120" novalidate (submit)="$event.preventDefault()" aria-labelledby="cot-title">
+        <h3 id="cot-title">Solicitar cotización</h3>
+        <p class="quote-help">
+          Completa los datos y elige cómo enviarlos. Se abrirá WhatsApp o tu aplicación de correo con el mensaje
+          listo; este formulario no envía información por sí mismo.
+        </p>
+
+        <div class="field">
+          <label for="cot-nombre">Nombre <span aria-hidden="true">*</span></label>
+          <input
+            id="cot-nombre"
+            type="text"
+            autocomplete="name"
+            required
+            maxlength="80"
+            [value]="name()"
+            (input)="name.set(readValue($event))"
+            [attr.aria-invalid]="submitted() && !!nameError()"
+            [attr.aria-describedby]="submitted() && nameError() ? 'cot-nombre-error' : null"
+          />
+          @if (submitted() && nameError()) {
+            <p class="error" id="cot-nombre-error">{{ nameError() }}</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="cot-servicio">Servicio de interés</label>
+          <select id="cot-servicio" [value]="service()" (change)="service.set(readValue($event))">
+            <option value="">Selecciona una opción (opcional)</option>
+            @for (option of services; track option) {
+              <option [value]="option">{{ option }}</option>
+            }
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="cot-detalle">Cuéntanos sobre tu proyecto <span aria-hidden="true">*</span></label>
+          <textarea
+            id="cot-detalle"
+            rows="5"
+            required
+            maxlength="1500"
+            [value]="details()"
+            (input)="details.set(readValue($event))"
+            [attr.aria-invalid]="submitted() && !!detailsError()"
+            [attr.aria-describedby]="submitted() && detailsError() ? 'cot-detalle-error' : null"
+          ></textarea>
+          @if (submitted() && detailsError()) {
+            <p class="error" id="cot-detalle-error">{{ detailsError() }}</p>
+          }
+        </div>
+
+        <div class="quote-actions">
+          <button type="button" class="btn btn-primary" [disabled]="!canUseWhatsapp" (click)="sendBy('whatsapp')">
+            <app-icon name="whatsapp" />
+            Enviar por WhatsApp
+          </button>
+          <button type="button" class="btn btn-outline" [disabled]="!canUseEmail" (click)="sendBy('email')">
+            <app-icon name="mail" />
+            Enviar por correo
+          </button>
+        </div>
+
+        @if (!canUseWhatsapp || !canUseEmail) {
+          <p class="config-note" role="note">
+            Los botones desactivados se habilitan al configurar el número de WhatsApp o el correo
+            en <code>src/app/config/site.config.ts</code>.
+          </p>
+        }
+      </form>
+    </div>
+  </div>
+</section>

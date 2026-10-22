@@ -1,0 +1,88 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.steps {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include m.up(v.$bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.up(v.$bp-md) {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+
+    // Línea que conecta los pasos
+    &::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--violet-500), var(--blue-400), transparent);
+      opacity: 0.5;
+    }
+  }
+}
+
+.step {
+  position: relative;
+  text-align: center;
+  padding: 0 0.5rem;
+
+  @include m.down(v.$bp-md) {
+    @include m.card;
+    padding: 1.5rem 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+}
+
+.step-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: var(--navy-800);
+  border: 1px solid rgba(155, 132, 255, 0.45);
+  box-shadow: 0 0 0 6px var(--bg), 0 0 30px -5px rgba(124, 92, 255, 0.6);
+  color: var(--violet-300);
+  transition: transform 0.3s ease;
+
+  .step:hover & {
+    transform: scale(1.08);
+  }
+}
+
+.step-number {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}

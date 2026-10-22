@@ -1,0 +1,114 @@
+<section id="portafolio" class="section" aria-labelledby="portafolio-title">
+  <div class="container">
+    <header class="section-header" appReveal>
+      <span class="eyebrow">Portafolio</span>
+      <h2 id="portafolio-title">Proyectos</h2>
+      <p>Algunas de las soluciones que hemos desarrollado: sistemas de gestión, páginas web y aplicaciones.</p>
+    </header>
+
+    @if (hasDemos) {
+      <p class="demo-notice" role="note" appReveal>
+        <strong>Nota:</strong> las tarjetas marcadas como <em>Demostración</em> son ejemplos ilustrativos,
+        no proyectos de clientes reales.
+      </p>
+    }
+
+    <ul class="grid">
+      @for (project of projects; track project.title; let i = $index) {
+        <li appReveal [revealDelay]="i * 100">
+          <article class="card">
+            @if (project.image) {
+              <div class="preview preview-image">
+                <img
+                  [src]="project.image"
+                  [alt]="'Captura de pantalla de ' + project.title"
+                  width="960"
+                  height="354"
+                  loading="lazy"
+                  decoding="async"
+                />
+                @if (project.isDemo) {
+                  <span class="demo-badge">Demostración</span>
+                }
+              </div>
+            } @else {
+              <div class="preview" [class]="'preview-' + project.preview" aria-hidden="true">
+                <div class="mock">
+                  <div class="mock-bar"><i></i><i></i><i></i></div>
+                  <div class="mock-body">
+                    @switch (project.preview) {
+                      @case ('catalog') {
+                        <div class="m-row">
+                          @for (n of [1, 2, 3, 4, 5, 6]; track n) {
+                            <div class="m-product"><b></b><s></s></div>
+                          }
+                        </div>
+                      }
+                      @case ('dashboard') {
+                        <div class="m-dash">
+                          <div class="m-side"></div>
+                          <div class="m-main">
+                            <div class="m-stats"><b></b><b></b><b></b></div>
+                            <div class="m-chart">
+                              @for (h of [40, 70, 55, 90, 65, 80]; track $index) {
+                                <span [style.height.%]="h"></span>
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      }
+                      @default {
+                        <div class="m-landing">
+                          <b class="m-title"></b>
+                          <s></s>
+                          <s class="short"></s>
+                          <i class="m-btn"></i>
+                        </div>
+                      }
+                    }
+                  </div>
+                </div>
+                @if (project.isDemo) {
+                  <span class="demo-badge">Demostración</span>
+                }
+              </div>
+            }
+
+            <div class="body">
+              <span class="category">{{ project.category }}</span>
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.description }}</p>
+
+              @if (project.technologies.length) {
+                <ul class="tech" aria-label="Tecnologías utilizadas">
+                  @for (tech of project.technologies; track tech) {
+                    <li>{{ tech }}</li>
+                  }
+                </ul>
+              }
+
+              <div class="links">
+                @if (project.demoUrl) {
+                  <a class="btn btn-primary" [href]="project.demoUrl" target="_blank" rel="noopener noreferrer">
+                    Ver demo
+                    <app-icon name="external" [size]="18" />
+                    <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+                  </a>
+                } @else {
+                  <span class="btn btn-outline" aria-disabled="true">Demo próximamente</span>
+                }
+                @if (project.repoUrl) {
+                  <a class="btn btn-outline" [href]="project.repoUrl" target="_blank" rel="noopener noreferrer">
+                    <app-icon name="github" [size]="18" />
+                    Código
+                    <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+                  </a>
+                }
+              </div>
+            </div>
+          </article>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

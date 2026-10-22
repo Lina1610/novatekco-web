@@ -1,0 +1,15 @@
+// Tipografía, medidas y puntos de quiebre.
+// Los colores viven como variables CSS en styles.scss (:root)
+// para usarlos en cualquier componente sin importar este archivo.
+
+$font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+$font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+
+$container: 1180px;
+
+$bp-sm: 600px;
+$bp-md: 900px;
+$bp-lg: 1200px;
+
+$radius: 16px;
+$radius-sm: 10px;
