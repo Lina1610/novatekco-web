@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://novatekco-web.pages.dev/sitemap.xml

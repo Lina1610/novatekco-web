@@ -78,11 +78,12 @@ Para las capturas usa imágenes JPG de unos 960 px de ancho (menos de 100 KB) pa
 
 El `<title>`, la `description`, `keywords`, `author` y las etiquetas `og:*` ya están con los datos de NovatekCO.
 
-Cuando tengas la dirección definitiva del sitio, cambia la imagen para redes sociales por una URL completa, porque WhatsApp y Facebook no aceptan rutas relativas:
+El sitio está publicado en **https://novatekco-web.pages.dev**. Esa dirección aparece en:
 
-```html
-<meta property="og:image" content="https://tu-proyecto.pages.dev/logo-512.png">
-```
+- `src/index.html`: `canonical`, `og:url`, `og:image` y los datos estructurados (`application/ld+json`)
+- `public/sitemap.xml` y `public/robots.txt`
+
+Si más adelante conectas un dominio propio (ej. `novatekco.com`), reemplaza la dirección en esos archivos.
 
 ### Logo
 
